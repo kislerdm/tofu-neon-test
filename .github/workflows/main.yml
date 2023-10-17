@@ -1,0 +1,22 @@
+name: Main
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    env:
+      NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+    name: Main
+    runs-on: ubuntu-latest
+    steps:
+    - name: OpenTofu - Setup Tofu
+      uses: opentofu/setup-opentofu@v1.0.0
+
+    - uses: actions/checkout@v4
+    - run: |
+        tofu init
+        tofu validate
+        tofu plan -lock-timeout=120s
+        tofu apply -auto-approve
+        tofu destroy -auto-approve
