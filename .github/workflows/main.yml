@@ -13,7 +13,7 @@ jobs:
     - name: OpenTofu - Setup Tofu
       uses: opentofu/setup-opentofu@v1.0.0
       with:
-        tofu_version: "~1.6"
+        tofu_version: "~1.6.0-alpha0"
 
     - uses: actions/checkout@v4
     - run: |
